@@ -1,6 +1,6 @@
-import React,{useState} from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image,TextInput,Linking  } from 'react-native';
-import axios from 'axios'
+import React,{useState} from "react"
+import { View, Text, StyleSheet, TouchableOpacity, Image,TextInput,Linking  } from "react-native";
+import axios from "axios"
 
 
 
@@ -12,9 +12,9 @@ const SignupScreen = ({navigation})=>{
 
     const [loading, setLoading] = useState(false);
     const [errortext, setErrortext] = useState(null);
-  const [email,setEmail] = useState('');
-  const [names,setNames] = useState('');
-  const [password,setPassowrd] = useState('');
+  const [email,setEmail] = useState("");
+  const [names,setNames] = useState("");
+  const [password,setPassowrd] = useState("");
     // const { handleLogin } = useAuth();
   
     const handleSubmit = async () => {
@@ -26,18 +26,14 @@ const SignupScreen = ({navigation})=>{
         password:password.nativeEvent.text
       }
       
-        console.log('ghfj');
-
         await axios.post(
           "http://localhost:4000/api/v1/auth/register",
           data
         ).then((response)=>{
-            console.log(' i have rechead inside', response)
         if (response.data.success == true) {
             navigation.navigate("Login");
           }
 
-        else console.log('reached here');
 
         }).
         catch((error)=>{
@@ -45,7 +41,7 @@ const SignupScreen = ({navigation})=>{
             console.log("un known error occured")
         })
 
-        console.log('racadsfsdf ')
+       
         
       } ;
 
@@ -82,7 +78,7 @@ const SignupScreen = ({navigation})=>{
 
       <Text style={styles.linktoRedirect}>have an account? <Text style={styles.link} 
       onPress={( ) => {
-        navigation.navigate('Login')
+        navigation.navigate("Login")
       }}>Login</Text>  </Text>
      </View>
 
@@ -113,7 +109,7 @@ const styles = StyleSheet.create({
     },
     
         formHeader:{
-         color:'#000000',
+         color:"#000000",
             fontSize:40,
             paddingTop:0,
             paddingBottom:20,
@@ -138,7 +134,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize:20,
     borderWidth:1,
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderColor:"#A6A5B0",
     borderRadius:10,
     

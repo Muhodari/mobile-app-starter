@@ -1,9 +1,9 @@
-import React,{useState} from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image,TextInput,Linking  } from 'react-native';
-import { login } from '../../services/auth';
+import React,{useState} from "react"
+import { View, Text, StyleSheet, TouchableOpacity, Image,TextInput,Linking  } from "react-native";
+import { login } from "../../services/auth";
 import * as yup from "yup";
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // define styles
 
 const signInValidationSchema = yup.object().shape({
@@ -23,12 +23,12 @@ const signInValidationSchema = yup.object().shape({
   const LoginScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
     const [errortext, setErrortext] = useState(null);
-  const [email,setEmail] = useState('');
-  const [password,setPassowrd] = useState('');
+  const [email,setEmail] = useState("");
+  const [password,setPassowrd] = useState("");
     // const { handleLogin } = useAuth();
   
     const handleSubmit = async () => {
-      // navigation.navigate('Register')
+      // navigation.navigate("Register")
       setLoading(true);
       const data={
         email:email.nativeEvent.text,
@@ -40,20 +40,20 @@ await axios.post(
   "http://localhost:4000/api/v1/auth/signin",
   data
 ).then((response)=>{
-    console.log(' i have rechead inside', response.data.data)
+    console.log(" i have rechead inside", response.data.data)
     AsyncStorage.setItem(
-      'token',
+      "token",
       response.data.data.token
     );
   
 if (response.data.success == true) {
   
 
-  localStorage.setItem('token', response?.data?.data?.token);
+  localStorage.setItem("token", response?.data?.data?.token);
     navigation.navigate("Home");
   }
 
-else console.log('reached here');
+else console.log("reached here");
 
 }).
 catch((error)=>{
@@ -61,7 +61,7 @@ catch((error)=>{
     console.log("un known error occured")
 })
 
-console.log('racadsfsdf ')
+console.log("racadsfsdf ")
 
      
     }
@@ -126,7 +126,7 @@ console.log('racadsfsdf ')
     },
     
         formHeader:{
-         color:'#000000',
+         color:"#000000",
             fontSize:40,
             paddingTop:0,
             paddingBottom:30,
@@ -151,7 +151,7 @@ console.log('racadsfsdf ')
     textAlign: "center",
     fontSize:20,
     borderWidth:1,
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderColor:"#A6A5B0",
     borderRadius:10,
     
