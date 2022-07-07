@@ -55,17 +55,17 @@ const SignupScreen = ({navigation})=>{
             </View>
                  
             <View style={styles.inputContainer}>
-                <TextInput style={styles.input} placeholder="Names" onChange={(val)=>setNames(val)}></TextInput>
+                <TextInput style={styles.input} placeholder="Names" onChangeText={(val)=>setNames(val)}></TextInput>
             </View>
               
 
             <View style={styles.inputContainer}>
-                <TextInput style={styles.input} placeholder="Email" onChange={(val)=>setEmail(val)}></TextInput>
+                <TextInput style={styles.input} placeholder="Email" onChangeText={(val)=>setEmail(val)}></TextInput>
             </View>
 
             <View style={styles.inputContainer}>
                 <TextInput style={styles.input} placeholder="Pasword" 
-                secureTextEntry={true} onChange={(val)=>setPassowrd(val)}
+                secureTextEntry={true} onChangeText={(val)=>setPassowrd(val)}
                 ></TextInput>
             </View>
 

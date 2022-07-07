@@ -31,14 +31,18 @@ const signInValidationSchema = yup.object().shape({
       // navigation.navigate("Register")
       setLoading(true);
       const data={
-        email:email.nativeEvent.text,
-        password:password.nativeEvent.text
+        email:email,
+        password:password
       }
       
 console.log(data);
+
 await axios.post(
-  "http://localhost:4000/api/v1/auth/signin",
-  data
+  "http://192.168.0.151:4000/api/v1/auth/signin",
+  {
+    email: email,
+    password: password,
+  }
 ).then((response)=>{
     console.log(" i have rechead inside", response.data.data)
     AsyncStorage.setItem(
@@ -81,14 +85,14 @@ console.log("racadsfsdf ")
 
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.input} placeholder="Email"
-                     onChange={(val)=>setEmail(val)}
+                     onChangeText={(val)=>setEmail(val)}
                     ></TextInput>
                 </View>
 
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.input} placeholder="Pasword" 
                     secureTextEntry={true}
-                    onChange={(text)=>setPassowrd(text)}
+                    onChangeText={(text)=>setPassowrd(text)}
                     ></TextInput>
                 </View>
 
