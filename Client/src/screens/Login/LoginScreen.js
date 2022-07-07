@@ -4,6 +4,7 @@ import { login } from "../../services/auth";
 import * as yup from "yup";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Updates from 'expo-updates';
 // define styles
 
 const signInValidationSchema = yup.object().shape({
@@ -44,17 +45,16 @@ await axios.post(
     password: password,
   }
 ).then((response)=>{
-    console.log(" i have rechead inside", response.data.data)
-    AsyncStorage.setItem(
-      "token",
-      response.data.data.token
-    );
-  
+    
 if (response.data.success == true) {
   
 
-  localStorage.setItem("token", response?.data?.data?.token);
-    navigation.navigate("Home");
+  AsyncStorage.setItem(
+    "token",
+    response.data.data.token
+  );
+   Updates.reloadAsync();
+
   }
 
 else console.log("reached here");
