@@ -10,5 +10,6 @@ router.get('/:id', getUserById);
 router.get('/email/:email', getUserByEmail);
 router.delete('/:id', deleteUser);
 
+
 registerDefinition(router, {tags: 'Users', mappedSchema: 'User', basePath: '/api/v1/users'});
 export default router;

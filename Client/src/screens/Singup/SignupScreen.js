@@ -1,7 +1,7 @@
 import React,{useState} from "react"
 import { View, Text, StyleSheet, TouchableOpacity, Image,TextInput,Linking  } from "react-native";
 import axios from "axios"
-
+import { API_URL } from "../../config";
 
 
 
@@ -15,21 +15,27 @@ const SignupScreen = ({navigation})=>{
   const [email,setEmail] = useState("");
   const [names,setNames] = useState("");
   const [password,setPassowrd] = useState("");
+  const [phone,setPhone] = useState("");
+  const [address,setAdress] = useState("");
+  const [nationalId,setNationalId] = useState("");
+
     // const { handleLogin } = useAuth();
   
     const handleSubmit = async () => {
       // navigation.navigate('Register')
       setLoading(true);
       const data={
-        name:names.nativeEvent.text,
-        email:email.nativeEvent.text,
-        password:password.nativeEvent.text
+        name:names,
+        address:address,
+        email:email,
+        phone:phone,
+        nationalId:nationalId,
+        role:"user",
+        password:password
       }
       
-        await axios.post(
-          "http://localhost:4000/api/v1/auth/register",
-          data
-        ).then((response)=>{
+        await axios.post(API_URL+"/auth/register",data)
+        .then((response)=>{
         if (response.data.success == true) {
             navigation.navigate("Login");
           }
@@ -57,10 +63,22 @@ const SignupScreen = ({navigation})=>{
             <View style={styles.inputContainer}>
                 <TextInput style={styles.input} placeholder="Names" onChangeText={(val)=>setNames(val)}></TextInput>
             </View>
+
+            <View style={styles.inputContainer}>
+                <TextInput style={styles.input} placeholder="Address" onChangeText={(val)=>setAdress(val)}></TextInput>
+            </View>
               
 
             <View style={styles.inputContainer}>
                 <TextInput style={styles.input} placeholder="Email" onChangeText={(val)=>setEmail(val)}></TextInput>
+            </View>
+
+            <View style={styles.inputContainer}>
+                <TextInput style={styles.input} placeholder="Phone" onChangeText={(val)=>setPhone(val)}></TextInput>
+            </View>
+
+            <View style={styles.inputContainer}>
+                <TextInput style={styles.input} placeholder="NationalId" onChangeText={(val)=>setNationalId(val)}></TextInput>
             </View>
 
             <View style={styles.inputContainer}>
@@ -111,15 +129,15 @@ const styles = StyleSheet.create({
         formHeader:{
          color:"#000000",
             fontSize:40,
-            paddingTop:0,
-            paddingBottom:20,
+            paddingTop:20,
+            paddingBottom:10,
             textAlign:"center",
             
     
     
         },
         inputContainer:{
-         paddingTop:30,
+         paddingTop:20,
          borderColor:"#514945AF",
         
     
@@ -127,8 +145,8 @@ const styles = StyleSheet.create({
     
     input:{
     width:340,
-    height: 68,
-    left: 43,
+    height: 38,
+    left: 13,
     // boxSizing: "border-box",
     backgroundColor: "#ffffff",
     textAlign: "center",
@@ -160,7 +178,7 @@ const styles = StyleSheet.create({
     
         buttonText:{
             fontSize:30,
-            fontWeight:"semi-bold",
+            fontWeight:"bold",
             color:"#ffffff",
             textAlign:"center"
     
@@ -177,7 +195,9 @@ const styles = StyleSheet.create({
         },
         link:{
             color:"#5149AF",
-            fontWeight:"bold"
+            fontWeight:"bold",
+            cursor:"pointer",
+            
         }
         
     });

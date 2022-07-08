@@ -5,7 +5,8 @@ import AuthMiddleware from "../middlewares/auth.middleware";
 
 const router = Router();
 
-router.post('/upload', AuthMiddleware ,uploadCandidacy);
+// router.post('/upload',uploadCandidacy);
+router.post('/upload', AuthMiddleware, uploadCandidacy);
 router.get('/', getAllCandidacies);
 router.get('/:id', getCandidacyById);
 router.get('/user/:id', getCandidacyByUserId);

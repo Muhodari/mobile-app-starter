@@ -6,10 +6,29 @@ const Schema = mongoose.Schema({
         type: String,
         required: true,
     },
+    address:{
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
         unique: true,
+    },
+    phone:{
+        type: String,
+        required: true,
+        unique: true,
+    },
+    nationalId:{
+        type: String,
+        required: true,
+        unique: true,
+    },
+    role:{
+        type:String,
+        required:true,
+        default:"user"
     },
     password: {
         type: String,

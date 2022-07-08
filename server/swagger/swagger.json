@@ -72,6 +72,49 @@
           ]
         }
       },
+      "/api/v1/auth/register/admin": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/AuthDto"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/AuthDto"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
       "/api/v1/auth/signin": {
         "post": {
           "tags": [
@@ -750,7 +793,23 @@
             "type": "string",
             "example": "string"
           },
+          "address": {
+            "type": "string",
+            "example": "string"
+          },
           "email": {
+            "type": "string",
+            "example": "string"
+          },
+          "phone": {
+            "type": "string",
+            "example": "string"
+          },
+          "nationalId": {
+            "type": "string",
+            "example": "string"
+          },
+          "role": {
             "type": "string",
             "example": "string"
           },
@@ -771,7 +830,19 @@
           "name": {
             "type": "string"
           },
+          "address": {
+            "type": "string"
+          },
           "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "nationalId": {
+            "type": "string"
+          },
+          "role": {
             "type": "string"
           },
           "password": {
@@ -787,6 +858,14 @@
             "example": "string"
           },
           "avatar": {
+            "type": "string",
+            "example": "string"
+          },
+          "nationalId": {
+            "type": "string",
+            "example": "string"
+          },
+          "gender": {
             "type": "string",
             "example": "string"
           },

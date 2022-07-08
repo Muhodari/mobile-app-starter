@@ -4,11 +4,11 @@ import { sign } from 'jsonwebtoken';
 
 export const signup = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name,address, email,phone,nationalId,role,password} = req.body;
     const userExist = await User.findOne({ email });
     if(userExist) return res.status(400).json({success: false, message: "User already exist" });
     
-    const user = new User({name, email, password: await hashPassword(password)});
+    const user = new User({name, email,address,phone,nationalId,role,password: await hashPassword(password)});
     await user.save();
     return res.status(201).json({success: true, data: user});
     } catch (error) {
@@ -25,12 +25,31 @@ export const signin = async (req, res) => {
     const isMatch = await comparePassword(password, user.password);
     if(!isMatch) return res.status(401).json({success: false, message: "Invalid Credentials" });
 
-    const token = sign({ _id: user._id, email, name: user.name }, process.env.JWT_KEY, { expiresIn: '1h' });
+    const token = sign({ _id: user._id, email, name: user.name }, process.env.JWT_KEY, { expiresIn: '1010h' });
     return res.status(200).json({success: true, data: { 
-        token:token } });
+        token:token
+    } });
 
 }
 
 export const getProfile = async (req, res) => {
     return res.status(200).json({success: true, data: req.user});
 }
+
+
+export const signupAdmin = async (req, res) => {
+    try {
+        const { name,address, email,phone,nationalId,role,password} = req.body;
+    const userExist = await User.findOne({ email });
+    if(userExist) return res.status(400).json({success: false, message: "User already exist" });
+    
+    const user = new User({name, email,address,phone,nationalId,role,password: await hashPassword(password)});
+    await user.save();
+    return res.status(201).json({success: true, data: user});
+    } catch (error) {
+        return res.status(400).json({success: false, message: error.message})
+    }
+    
+}
+
+

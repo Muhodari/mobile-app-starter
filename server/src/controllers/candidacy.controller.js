@@ -2,16 +2,15 @@ import Candidacy from '../database/models/candidacy.model';
 import User from '../database/models/user.model';
 
 export const uploadCandidacy = async (req, res) => {
-    const {description, avatar} = req.body;
+    const {user,avatar,nationalId,gender,votes,description} = req.body;
     const userId = req.user._id;
-
     const userExist = await User.findOne({_id: userId});
     if(!userExist) return res.status(400).json({success: false, message: "User does not exist"});
 
     const candidacyExist = await Candidacy.findOne({user: userId});
     if(candidacyExist) return res.status(400).json({success: false, message: "Candidacy already exist"});
 
-    const candidacy = new Candidacy({user: userId, description, avatar});
+    const candidacy = new Candidacy({user: userId, description, avatar,gender,nationalId});
     await candidacy.save();
 
     return res.status(201).json({success: true, data: candidacy});

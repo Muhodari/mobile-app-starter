@@ -10,6 +10,16 @@ const Schema = mongoose.Schema({
         type: String,
         required: true
     },
+    nationalId:{
+        type: String,
+        required: true,
+        unique: true,
+    },
+    gender:{
+        type:String,
+        required:true,
+    },
+
     votes: {
         type: Number,
         required: true,

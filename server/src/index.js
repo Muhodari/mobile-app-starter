@@ -24,7 +24,7 @@ app.use('/api/v1/candidacy', candidacyRoute);
 app.use('/api/v1/users', usersRoute);
 
 
-const PORT = 4000;
+const PORT = 5000;
 app.listen(PORT, () => {
     console.log("App running on port ...  "+PORT);
 })

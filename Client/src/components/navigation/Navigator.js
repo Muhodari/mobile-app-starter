@@ -53,7 +53,7 @@ const Tabs= createBottomTabNavigator();
     
     useEffect(() => {
        async function getToken() {
-      const token = await AsyncStorage.getItem('token');
+      const token = await AsyncStorage.getItem("token");
             if (token) {
                 setIsAuthenticated(true);
             }

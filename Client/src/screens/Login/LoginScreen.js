@@ -5,6 +5,7 @@ import * as yup from "yup";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Updates from 'expo-updates';
+import { API_URL } from "../../config";
 // define styles
 
 const signInValidationSchema = yup.object().shape({
@@ -39,11 +40,7 @@ const signInValidationSchema = yup.object().shape({
 console.log(data);
 
 await axios.post(
-  "http://192.168.0.151:4000/api/v1/auth/signin",
-  {
-    email: email,
-    password: password,
-  }
+  API_URL+"/auth/signin",data 
 ).then((response)=>{
     
 if (response.data.success == true) {
@@ -149,7 +146,7 @@ console.log("racadsfsdf ")
     input:{
     width:340,
     height: 68,
-    left: 43,
+    left: 13,
     // boxSizing: "border-box",
     backgroundColor: "#ffffff",
     textAlign: "center",
@@ -181,7 +178,7 @@ console.log("racadsfsdf ")
     
         buttonText:{
             fontSize:30,
-            fontWeight:"semi-bold",
+            fontWeight:"bold",
             color:"#ffffff",
             textAlign:"center"
     
@@ -198,7 +195,8 @@ console.log("racadsfsdf ")
         },
         link:{
             color:"#5149AF",
-            fontWeight:"bold"
+            fontWeight:"bold",
+            cursor:"pointer",
         }
         
     });
